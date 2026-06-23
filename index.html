@@ -466,7 +466,7 @@
 <!-- OUR STORY -->
 <section id="our-story">
   <div class="our-story-inner">
-    <div class="our-story-photo">
+    <div class="our-story-photo" id="cms-founder-photo">
       <div class="our-story-photo-placeholder">S</div>
     </div>
     <div class="our-story-text">
@@ -697,7 +697,10 @@ async function loadCMSData() {
       if (grid) {
         grid.innerHTML = team.team.map(m => `
           <div class="team-card">
-            <div class="team-avatar">${m.initial}</div>
+            ${m.photo
+              ? `<div class="team-avatar" style="padding:0;overflow:hidden;"><img src="${m.photo}" alt="${m.name}" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;" /></div>`
+              : `<div class="team-avatar">${m.initial}</div>`
+            }
             <div class="team-info">
               <div class="team-name">${m.name}</div>
               <div class="team-role">${m.role}</div>
@@ -734,6 +737,14 @@ async function loadCMSData() {
       if (p3) p3.textContent = about.para3;
       if (fq) fq.textContent = `"${about.founder_quote}"`;
       if (fn) fn.textContent = about.founder_name;
+
+      // Founder photo on Our Story page
+      if (about.founder_photo) {
+        const photoBox = document.getElementById('cms-founder-photo');
+        if (photoBox) {
+          photoBox.innerHTML = `<img src="${about.founder_photo}" alt="Founder Sahis Shahi" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;" />`;
+        }
+      }
     }
 
   } catch(e) {
