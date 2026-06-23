@@ -76,3 +76,14 @@ collections:
           - { label: "Founder Quote (Our Story page)", name: "founder_quote", widget: "text" }
           - { label: "Founder Name & Title", name: "founder_name", widget: "string" }
           - { label: "Founder Photo (Our Story page)", name: "founder_photo", widget: "image", required: false, hint: "Upload a photo of the founder" }
+
+      - name: "gallery"
+        label: "Gallery Photos"
+        file: "_data/gallery.json"
+        fields:
+          - label: "Gallery Items"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Label", name: "label", widget: "string", hint: "e.g. The Saiba Space, Facials, Hair" }
+              - { label: "Photo", name: "photo", widget: "image", required: false, hint: "Upload a gallery photo" }
