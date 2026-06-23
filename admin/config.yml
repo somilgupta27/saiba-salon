@@ -52,6 +52,7 @@ collections:
               - { label: "Role", name: "role", widget: "string" }
               - { label: "Bio", name: "bio", widget: "text" }
               - { label: "Initial (shown if no photo)", name: "initial", widget: "string" }
+              - { label: "Photo", name: "photo", widget: "image", required: false, hint: "Upload a photo of this team member" }
 
       - name: "testimonials"
         label: "Testimonials"
@@ -74,3 +75,4 @@ collections:
           - { label: "About Paragraph 3", name: "para3", widget: "text" }
           - { label: "Founder Quote (Our Story page)", name: "founder_quote", widget: "text" }
           - { label: "Founder Name & Title", name: "founder_name", widget: "string" }
+          - { label: "Founder Photo (Our Story page)", name: "founder_photo", widget: "image", required: false, hint: "Upload a photo of the founder" }
