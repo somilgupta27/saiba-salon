@@ -1,1 +1,17 @@
-
+{
+  "phone": "(123) 456-7890",
+  "email": "sahis@saibasalon.com",
+  "address1": "135 Massachusetts Ave",
+  "address2": "Lexington, MA 02420",
+  "maps_url": "https://maps.google.com/?q=135+Massachusetts+Ave,+Lexington,+MA+02420",
+  "vagaro_url": "https://www.vagaro.com",
+  "hours": [
+    { "day": "Monday",    "time": "9am – 7pm" },
+    { "day": "Tuesday",   "time": "9am – 7pm" },
+    { "day": "Wednesday", "time": "9am – 7pm" },
+    { "day": "Thursday",  "time": "9am – 8pm" },
+    { "day": "Friday",    "time": "9am – 8pm" },
+    { "day": "Saturday",  "time": "9am – 6pm" },
+    { "day": "Sunday",    "time": "Closed" }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "services": [
+    { "name": "Facial Treatments", "desc": "Customized facials using clean, skin-loving formulas to brighten, hydrate, and restore your natural glow. Suitable for all skin types.", "price": "$75", "duration": "60–90 min" },
+    { "name": "Massage Therapy",   "desc": "Swedish, deep tissue, and aromatherapy massage by certified therapists. Release tension and step back into ease.", "price": "$90", "duration": "60–90 min" },
+    { "name": "Hair Care",         "desc": "Expert cuts, color, and treatments tailored to your texture and lifestyle. We work with all hair types with equal expertise.", "price": "$55", "duration": "Varies by service" },
+    { "name": "Nail Services",     "desc": "Manicures, pedicures, gel, and nail art. Hygienic, precise, and always on-trend — or classically timeless, your call.", "price": "$35", "duration": "45–75 min" },
+    { "name": "Body Treatments",   "desc": "Exfoliating scrubs, wraps, and hydrating body rituals to nourish skin head to toe. A full reset for your body and mind.", "price": "$85", "duration": "60 min" },
+    { "name": "Spa Packages",      "desc": "Curated wellness journeys combining multiple treatments at a relaxed pace. Perfect for a gift, a celebration, or simply yourself.", "price": "$150", "duration": "2–3 hrs" }
+  ]
+}
