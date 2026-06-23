@@ -1,0 +1,76 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "settings"
+    label: "Site Settings"
+    files:
+
+      - name: "contact"
+        label: "Contact & Hours"
+        file: "_data/contact.json"
+        fields:
+          - { label: "Phone Number", name: "phone", widget: "string", hint: "e.g. (781) 555-1234" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Address Line 1", name: "address1", widget: "string" }
+          - { label: "Address Line 2", name: "address2", widget: "string" }
+          - { label: "Google Maps URL", name: "maps_url", widget: "string" }
+          - { label: "Vagaro Booking URL", name: "vagaro_url", widget: "string" }
+          - label: "Hours"
+            name: "hours"
+            widget: "list"
+            fields:
+              - { label: "Day", name: "day", widget: "string" }
+              - { label: "Hours", name: "time", widget: "string", hint: "e.g. 9am – 7pm or Closed" }
+
+      - name: "services"
+        label: "Services & Pricing"
+        file: "_data/services.json"
+        fields:
+          - label: "Services"
+            name: "services"
+            widget: "list"
+            fields:
+              - { label: "Service Name", name: "name", widget: "string" }
+              - { label: "Description", name: "desc", widget: "text" }
+              - { label: "Starting Price", name: "price", widget: "string", hint: "e.g. $75" }
+              - { label: "Duration", name: "duration", widget: "string", hint: "e.g. 60–90 min" }
+
+      - name: "team"
+        label: "Team Members"
+        file: "_data/team.json"
+        fields:
+          - label: "Team Members"
+            name: "team"
+            widget: "list"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Role", name: "role", widget: "string" }
+              - { label: "Bio", name: "bio", widget: "text" }
+              - { label: "Initial (shown if no photo)", name: "initial", widget: "string" }
+
+      - name: "testimonials"
+        label: "Testimonials"
+        file: "_data/testimonials.json"
+        fields:
+          - label: "Testimonials"
+            name: "testimonials"
+            widget: "list"
+            fields:
+              - { label: "Quote", name: "text", widget: "text" }
+              - { label: "Author", name: "author", widget: "string", hint: "e.g. — A. Patel" }
+              - { label: "Source", name: "source", widget: "string", hint: "e.g. Google Review" }
+
+      - name: "about"
+        label: "About & Our Story"
+        file: "_data/about.json"
+        fields:
+          - { label: "About Paragraph 1", name: "para1", widget: "text" }
+          - { label: "About Paragraph 2", name: "para2", widget: "text" }
+          - { label: "About Paragraph 3", name: "para3", widget: "text" }
+          - { label: "Founder Quote (Our Story page)", name: "founder_quote", widget: "text" }
+          - { label: "Founder Name & Title", name: "founder_name", widget: "string" }
