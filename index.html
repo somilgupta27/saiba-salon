@@ -340,6 +340,7 @@
     footer { padding: 2rem 1.25rem; }
   }
 </style>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
 
@@ -380,7 +381,7 @@
   <div class="hero-content">
     <p class="hero-tagline">Love All &nbsp;&middot;&nbsp; Serve All</p>
     <div class="hero-ctas">
-      <a href="#contact" class="btn-book">Book an Appointment</a>
+      <a href="#contact" class="btn-book cms-vagaro">Book an Appointment</a>
       <a href="#services" class="btn-services">Explore Services</a>
     </div>
   </div>
@@ -406,9 +407,9 @@
     <div>
       <h2 class="section-title">Welcome to SAIBA Hair Salon &amp; Spa!</h2>
       <div class="divider"></div>
-      <p class="section-sub">SAIBA is more than a salon — it is a calm, beautiful space created with love, faith, patience, and purpose.</p>
-      <p class="section-sub" style="margin-top: 1rem;">Our vision is to bring luxury hair, beauty, and wellness services to every age, while building a warm community where everyone feels seen, cared for, and transformed.</p>
-      <p class="section-sub" style="margin-top: 1rem;">We can't wait to welcome you soon in Lexington, MA.</p>
+      <p class="section-sub" id="cms-about-p1">SAIBA is more than a salon — it is a calm, beautiful space created with love, faith, patience, and purpose.</p>
+      <p class="section-sub" id="cms-about-p2" style="margin-top: 1rem;">Our vision is to bring luxury hair, beauty, and wellness services to every age, while building a warm community where everyone feels seen, cared for, and transformed.</p>
+      <p class="section-sub" id="cms-about-p3" style="margin-top: 1rem;">We can't wait to welcome you soon in Lexington, MA.</p>
 
     </div>
   </div>
@@ -422,7 +423,7 @@
     <div class="divider"></div>
     <p class="section-sub" style="max-width: 700px;">Thoughtfully designed treatments to restore, refresh, and renew — for every body and every mood.</p>
   </div>
-  <div class="services-grid">
+  <div class="services-grid" id="cms-services-grid">
     <div class="service-card">
       <svg class="service-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="18" cy="12" r="7"/><path d="M6 34c0-6.627 4.925-12 12-12s12 5.373 12 12"/></svg>
       <div class="service-name">Facial Treatments</div>
@@ -471,8 +472,8 @@
     <div class="our-story-text">
       <p class="section-eyebrow">Our Story</p>
       <div class="divider"></div>
-      <p class="our-story-quote">"I created SAIBA as a place where everyone feels cared for — women, men, children, seniors, and families. Beauty is not only about looking good; it is about feeling peaceful, confident, and seen."</p>
-      <div class="our-story-signature">Founder Sahis Shahi</div>
+      <p class="our-story-quote" id="cms-founder-quote">"I created SAIBA as a place where everyone feels cared for — women, men, children, seniors, and families. Beauty is not only about looking good; it is about feeling peaceful, confident, and seen."</p>
+      <div class="our-story-signature" id="cms-founder-name">Founder Sahis Shahi</div>
     </div>
   </div>
 </section>
@@ -485,7 +486,7 @@
     <div class="divider"></div>
     <p class="section-sub" style="max-width: 700px;">A dedicated team of licensed professionals who treat every client as family.</p>
   </div>
-  <div class="team-grid">
+  <div class="team-grid" id="cms-team-grid">
     <div class="team-card">
       <div class="team-avatar">S</div>
       <div class="team-info">
@@ -537,7 +538,7 @@
     <h2 class="section-title">What our guests say</h2>
     <div class="divider"></div>
   </div>
-  <div class="testimonials-grid">
+  <div class="testimonials-grid" id="cms-testimonials-grid">
     <div class="testimonial-card">
       <div class="testimonial-quote-mark">"</div>
       <div class="stars">★★★★★</div>
@@ -573,23 +574,23 @@
       <div class="contact-details">
         <div class="contact-item">
           <svg class="contact-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M10 11a3 3 0 100-6 3 3 0 000 6z"/><path d="M10 2C6.134 2 3 5.134 3 9c0 5.25 7 11 7 11s7-5.75 7-11c0-3.866-3.134-7-7-7z"/></svg>
-          <div><span class="contact-label">Address</span><div class="contact-value"><a href="https://maps.google.com/?q=135+Massachusetts+Ave,+Lexington,+MA+02420" target="_blank" rel="noopener">135 Massachusetts Ave<br>Lexington, MA 02420</a></div></div>
+          <div><span class="contact-label">Address</span><div class="contact-value" id="cms-address"><a href="https://maps.google.com/?q=135+Massachusetts+Ave,+Lexington,+MA+02420" target="_blank" rel="noopener">135 Massachusetts Ave<br>Lexington, MA 02420</a></div></div>
         </div>
         <div class="contact-item">
           <svg class="contact-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2 3h4l2 5-2.5 1.5a11 11 0 005 5L12 12l5 2v4a2 2 0 01-2 2C6.477 20 0 13.523 0 5a2 2 0 012-2z"/></svg>
-          <div><span class="contact-label">Phone</span><div class="contact-value"><a href="tel:+11234567890">(123) 456-7890</a></div></div>
+          <div><span class="contact-label">Phone</span><div class="contact-value" id="cms-phone"><a href="tel:+11234567890">(123) 456-7890</a></div></div>
         </div>
         <div class="contact-item">
           <svg class="contact-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2 4h16v12H2z"/><path d="M2 4l8 8 8-8"/></svg>
-          <div><span class="contact-label">Email</span><div class="contact-value"><a href="mailto:sahis@saibasalon.com">sahis@saibasalon.com</a></div></div>
+          <div><span class="contact-label">Email</span><div class="contact-value"><a href="mailto:sahis@saibasalon.com" class="cms-email">sahis@saibasalon.com</a></div></div>
         </div>
       </div>
     </div>
     <div class="booking-box">
       <div class="booking-title">Book your appointment</div>
       <p class="booking-sub">Scheduling is fast and easy through our Vagaro portal. Choose your service, pick your specialist, and select a time that works for you.</p>
-      <a href="https://www.vagaro.com" target="_blank" rel="noopener" class="vagaro-btn">Book on Vagaro →</a>
-      <div class="hours-grid">
+      <a href="https://www.vagaro.com" target="_blank" rel="noopener" class="vagaro-btn cms-vagaro">Book on Vagaro →</a>
+      <div class="hours-grid" id="cms-hours">
         <div class="hours-row"><span class="hours-day">Monday</span><span class="hours-time">9am – 7pm</span></div>
         <div class="hours-row"><span class="hours-day">Tuesday</span><span class="hours-time">9am – 7pm</span></div>
         <div class="hours-row"><span class="hours-day">Wednesday</span><span class="hours-time">9am – 7pm</span></div>
@@ -635,6 +636,127 @@
   btn.addEventListener('click', () => drawer.classList.contains('open') ? closeMenu() : openMenu());
   overlay.addEventListener('click', closeMenu);
   document.querySelectorAll('.drawer-link').forEach(l => l.addEventListener('click', closeMenu));
+</script>
+
+<script>
+// ── CMS DATA LOADER ──
+// Fetches JSON data files and updates the page content dynamically
+async function loadCMSData() {
+  try {
+    const [contact, services, team, testimonials, about] = await Promise.all([
+      fetch('/_data/contact.json').then(r => r.json()).catch(() => null),
+      fetch('/_data/services.json').then(r => r.json()).catch(() => null),
+      fetch('/_data/team.json').then(r => r.json()).catch(() => null),
+      fetch('/_data/testimonials.json').then(r => r.json()).catch(() => null),
+      fetch('/_data/about.json').then(r => r.json()).catch(() => null),
+    ]);
+
+    // CONTACT
+    if (contact) {
+      const phoneEl = document.getElementById('cms-phone');
+      if (phoneEl) phoneEl.innerHTML = `<a href="tel:${contact.phone.replace(/\D/g,'')}">${contact.phone}</a>`;
+
+      const emailEls = document.querySelectorAll('.cms-email');
+      emailEls.forEach(el => { el.href = `mailto:${contact.email}`; el.textContent = contact.email; });
+
+      const addrEl = document.getElementById('cms-address');
+      if (addrEl) addrEl.innerHTML = `<a href="${contact.maps_url}" target="_blank" rel="noopener">${contact.address1}<br>${contact.address2}</a>`;
+
+      const vagaroEls = document.querySelectorAll('.cms-vagaro');
+      vagaroEls.forEach(el => el.href = contact.vagaro_url);
+
+      const hoursEl = document.getElementById('cms-hours');
+      if (hoursEl && contact.hours) {
+        hoursEl.innerHTML = contact.hours.map(h =>
+          `<div class="hours-row"><span class="hours-day">${h.day}</span><span class="hours-time">${h.time}</span></div>`
+        ).join('');
+      }
+    }
+
+    // SERVICES
+    if (services && services.services) {
+      const grid = document.getElementById('cms-services-grid');
+      if (grid) {
+        const icons = grid.querySelectorAll('.service-icon');
+        const cards = services.services.map((s, i) => {
+          const iconSVG = icons[i] ? icons[i].outerHTML : '';
+          return `<div class="service-card">
+            ${iconSVG}
+            <div class="service-name">${s.name}</div>
+            <p class="service-desc">${s.desc}</p>
+            <div class="service-price">Starting from <strong>${s.price}</strong> · ${s.duration}</div>
+          </div>`;
+        }).join('');
+        grid.innerHTML = cards;
+      }
+    }
+
+    // TEAM
+    if (team && team.team) {
+      const grid = document.getElementById('cms-team-grid');
+      if (grid) {
+        grid.innerHTML = team.team.map(m => `
+          <div class="team-card">
+            <div class="team-avatar">${m.initial}</div>
+            <div class="team-info">
+              <div class="team-name">${m.name}</div>
+              <div class="team-role">${m.role}</div>
+              <p class="team-bio">${m.bio}</p>
+            </div>
+          </div>`).join('');
+      }
+    }
+
+    // TESTIMONIALS
+    if (testimonials && testimonials.testimonials) {
+      const grid = document.getElementById('cms-testimonials-grid');
+      if (grid) {
+        grid.innerHTML = testimonials.testimonials.map(t => `
+          <div class="testimonial-card">
+            <div class="testimonial-quote-mark">"</div>
+            <div class="stars">★★★★★</div>
+            <p class="testimonial-text">${t.text}</p>
+            <div class="testimonial-author">${t.author}</div>
+            <div class="testimonial-source">${t.source}</div>
+          </div>`).join('');
+      }
+    }
+
+    // ABOUT
+    if (about) {
+      const p1 = document.getElementById('cms-about-p1');
+      const p2 = document.getElementById('cms-about-p2');
+      const p3 = document.getElementById('cms-about-p3');
+      const fq = document.getElementById('cms-founder-quote');
+      const fn = document.getElementById('cms-founder-name');
+      if (p1) p1.textContent = about.para1;
+      if (p2) p2.textContent = about.para2;
+      if (p3) p3.textContent = about.para3;
+      if (fq) fq.textContent = `"${about.founder_quote}"`;
+      if (fn) fn.textContent = about.founder_name;
+    }
+
+  } catch(e) {
+    console.log('CMS data not available, using default content.');
+  }
+}
+
+// Run on page load
+loadCMSData();
+
+// Netlify Identity - handle invite tokens and login redirect
+if (window.netlifyIdentity) {
+  window.netlifyIdentity.on("init", user => {
+    if (!user) {
+      window.netlifyIdentity.on("login", () => { document.location.href = "/admin/"; });
+    }
+  });
+  // Auto-open the identity modal if an invite/recovery token is present in the URL
+  const hash = window.location.hash;
+  if (hash && (hash.includes("invite_token") || hash.includes("recovery_token") || hash.includes("confirmation_token"))) {
+    window.netlifyIdentity.open();
+  }
+}
 </script>
 </body>
 </html>
