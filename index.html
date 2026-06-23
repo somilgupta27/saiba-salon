@@ -522,7 +522,7 @@
     <div class="divider"></div>
     <p class="section-sub" style="max-width: 700px;">A glimpse inside Saiba — the treatments, the space, and the moments in between.</p>
   </div>
-  <div class="gallery-grid">
+  <div class="gallery-grid" id="cms-gallery-grid">
     <div class="gallery-item"><p class="gallery-placeholder">Add your<br>signature image here</p><div class="gallery-overlay"><span class="gallery-tag">The Saiba Space</span></div></div>
     <div class="gallery-item"><p class="gallery-placeholder">Facial<br>Treatment</p><div class="gallery-overlay"><span class="gallery-tag">Facials</span></div></div>
     <div class="gallery-item"><p class="gallery-placeholder">Massage<br>Room</p><div class="gallery-overlay"><span class="gallery-tag">Massage</span></div></div>
@@ -643,12 +643,13 @@
 // Fetches JSON data files and updates the page content dynamically
 async function loadCMSData() {
   try {
-    const [contact, services, team, testimonials, about] = await Promise.all([
+    const [contact, services, team, testimonials, about, gallery] = await Promise.all([
       fetch('/_data/contact.json').then(r => r.json()).catch(() => null),
       fetch('/_data/services.json').then(r => r.json()).catch(() => null),
       fetch('/_data/team.json').then(r => r.json()).catch(() => null),
       fetch('/_data/testimonials.json').then(r => r.json()).catch(() => null),
       fetch('/_data/about.json').then(r => r.json()).catch(() => null),
+      fetch('/_data/gallery.json').then(r => r.json()).catch(() => null),
     ]);
 
     // CONTACT
@@ -744,6 +745,23 @@ async function loadCMSData() {
         if (photoBox) {
           photoBox.innerHTML = `<img src="${about.founder_photo}" alt="Founder Sahis Shahi" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;" />`;
         }
+      }
+    }
+
+    // GALLERY
+    if (gallery && gallery.items) {
+      const grid = document.getElementById('cms-gallery-grid');
+      if (grid) {
+        // Preserve mosaic span classes for first and 4th items
+        grid.innerHTML = gallery.items.map((item, i) => {
+          const imgContent = item.photo
+            ? `<img src="${item.photo}" alt="${item.label}" style="width:100%;height:100%;object-fit:cover;display:block;" />`
+            : `<p class="gallery-placeholder">${item.label}</p>`;
+          return `<div class="gallery-item">
+            ${imgContent}
+            <div class="gallery-overlay"><span class="gallery-tag">${item.label}</span></div>
+          </div>`;
+        }).join('');
       }
     }
 
