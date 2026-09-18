@@ -1,7 +1,16 @@
 {
   "testimonials": [
-    { "text": "I've never felt so genuinely welcomed at a salon. Sahis has created something truly special in Lexington. Every visit is like a reset for my entire week.", "author": "— A. Patel", "source": "Google Review" },
-    { "text": "The facial I got was the best I've ever had — they actually took the time to understand my skin. The ambiance is calm and beautiful. I won't go anywhere else.", "author": "— M. Thornton", "source": "Vagaro Review" },
-    { "text": "Booked a spa package for my birthday and it was perfect from start to finish. The team is professional, warm, and incredibly skilled. Highly recommend.", "author": "— L. Nguyen", "source": "Google Review" }
+    {
+      "text": "Sahis has been my hairdresser for over 10 years. I look forward to my appointments, not only because she is a fabulous hair stylist, but also because she makes it a relaxing and rejuvenating experience. Sahis cares about her clients. When I complained that the hair color was burning my scalp, she immediately switched to a new product without ammonia. Sahis is always responsive to my requests. Nevertheless, she has a unique flair for how she styles my hair. Her choices of color and cut make me feel like a new person! I'm excited for the opening of her new salon!",
+      "author": "Kay Seligson"
+    },
+    {
+      "text": "I have known Sahis for 15 years. She is a wonderful and kind person and a great professional hair stylist and great at facial care including facial threading and face and hair care. Amongst all my hair and face experiences working with Sahis has been the best. Her work speaks for her and her kindness and generosity are part of why customers return to work with her. Sahis understands our needs and takes the time to make it beautiful …",
+      "author": "Shanaz Bedri"
+    },
+    {
+      "text": "I've been going to Sahis for a long time now, and she always does a wonderful job. She really understands how I like my haircut and gets it right every time. She's equally great with eyebrows and shapes them beautifully! Sahis is warm, patient, and genuinely cares about her work. I'm so happy that she's opening her own salon and bringing Saiba, a dream so close to her heart, to life. I'm excited to visit her there and see her do amazingly well!",
+      "author": "Indu"
+    }
   ]
 }

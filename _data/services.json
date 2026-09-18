@@ -1,10 +1,100 @@
 {
-  "services": [
-    { "name": "Facial Treatments", "desc": "Customized facials using clean, skin-loving formulas to brighten, hydrate, and restore your natural glow. Suitable for all skin types.", "price": "$75", "duration": "60–90 min" },
-    { "name": "Massage Therapy",   "desc": "Swedish, deep tissue, and aromatherapy massage by certified therapists. Release tension and step back into ease.", "price": "$90", "duration": "60–90 min" },
-    { "name": "Hair Care",         "desc": "Expert cuts, color, and treatments tailored to your texture and lifestyle. We work with all hair types with equal expertise.", "price": "$55", "duration": "Varies by service" },
-    { "name": "Nail Services",     "desc": "Manicures, pedicures, gel, and nail art. Hygienic, precise, and always on-trend — or classically timeless, your call.", "price": "$35", "duration": "45–75 min" },
-    { "name": "Body Treatments",   "desc": "Exfoliating scrubs, wraps, and hydrating body rituals to nourish skin head to toe. A full reset for your body and mind.", "price": "$85", "duration": "60 min" },
-    { "name": "Spa Packages",      "desc": "Curated wellness journeys combining multiple treatments at a relaxed pace. Perfect for a gift, a celebration, or simply yourself.", "price": "$150", "duration": "2–3 hrs" }
+  "categories": [
+    {
+      "key": "haircuts-styling",
+      "title": "Haircuts & Styling",
+      "tile_image": "assets/images/service-haircuts-styling.jpg",
+      "type": "items",
+      "items": ["Women's Haircut & Style", "Men's Haircut & Grooming", "Children's Haircut", "Senior Hair Services", "Shampoo & Blow-Dry", "Formal & Bridal Styling"]
+    },
+    {
+      "key": "hair-color",
+      "title": "Hair Color",
+      "tile_image": "assets/images/service-hair-color.jpg",
+      "type": "items",
+      "items": ["Root Touch-Up", "All-Over Color", "Gloss & Toner", "Partial Highlights", "Full Highlights", "Balayage", "Color Correction"]
+    },
+    {
+      "key": "hair-treatments",
+      "title": "Hair Treatments",
+      "tile_image": "assets/images/service-hair-treatments.jpg",
+      "type": "items",
+      "items": ["Deep Conditioning", "Bond Repair", "Keratin Smoothing", "Hair Botox"]
+    },
+    {
+      "key": "facials",
+      "title": "Facials",
+      "tile_image": "assets/images/service-facials.jpg",
+      "type": "items",
+      "items": ["Hydrating", "Age-Defying", "Teen", "Gentleman's"]
+    },
+    {
+      "key": "brows",
+      "title": "Brows",
+      "tile_image": "assets/images/service-brows.jpg",
+      "type": "items",
+      "items": ["Eyebrow Shaping", "Threading", "Brow Tint", "Brow Lamination"]
+    },
+    {
+      "key": "waxing",
+      "title": "Waxing",
+      "tile_image": "assets/images/service-waxing.jpg",
+      "type": "items",
+      "items": ["Facial Waxing", "Body Waxing"]
+    },
+    {
+      "key": "spa-rituals",
+      "title": "Scalp Wellness",
+      "tile_image": "assets/images/service-scalp-wellness.jpg",
+      "type": "items",
+      "items": ["Signature Herbal Oil Massage"]
+    },
+    {
+      "key": "makeup",
+      "title": "Makeup",
+      "tile_image": "assets/images/service-makeup.jpg",
+      "type": "items",
+      "items": ["Natural Makeup", "Special Occasion Makeup", "Bridal Makeup"]
+    },
+    {
+      "key": "products",
+      "title": "Products",
+      "tile_image": "assets/images/service-products.jpg",
+      "type": "brands",
+      "brands": [
+        {
+          "logo": "assets/images/brand-schwarzkopf.png",
+          "alt": "Schwarzkopf Professional logo",
+          "chip": false,
+          "category": "Hair Color",
+          "desc": "Advanced professional color technology for rich, dimensional and beautiful long-lasting color.",
+          "url": "https://www.schwarzkopf-professional.com/us/en.html"
+        },
+        {
+          "logo": "assets/images/brand-eufora.png",
+          "alt": "Eufora logo",
+          "chip": true,
+          "category": "Hair Care",
+          "desc": "Professional hair care selected to support healthy, manageable and beautifully styled hair.",
+          "url": "https://eufora.net/"
+        },
+        {
+          "logo": "assets/images/brand-k18.png",
+          "alt": "K18 logo",
+          "chip": true,
+          "category": "Hair Repair",
+          "desc": "Advanced molecular hair-repair technology designed to restore strength, softness and healthy-looking hair.",
+          "url": "https://www.k18hair.com/"
+        },
+        {
+          "logo": "assets/images/brand-eminence.png",
+          "alt": "Eminence Organic Skin Care logo",
+          "chip": true,
+          "category": "Facials & Skin Care",
+          "desc": "Professional botanical skincare thoughtfully selected for radiant, balanced and healthy-looking skin.",
+          "url": "https://eminenceorganics.com/us/"
+        }
+      ]
+    }
   ]
 }

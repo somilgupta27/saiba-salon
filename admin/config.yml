@@ -1,89 +1,178 @@
+# Saiba Hair Salon & Spa — Content Manager configuration (Decap CMS)
+#
+# SECURITY MODEL (read before changing backend/auth settings):
+#   - backend.name is "git-gateway": all reads/writes go through Netlify's
+#     own server-side Git Gateway service. The browser never sees a GitHub
+#     token, API key, or password — Netlify Identity issues a short-lived
+#     session to the logged-in editor, and Git Gateway checks that session
+#     on every request before touching the repo. There is nothing to leak
+#     from this file or from browser code, because no secret lives here.
+#   - Who is allowed to log in at all, and who is allowed to actually
+#     publish, is controlled in the Netlify dashboard (Identity settings +
+#     Git Gateway role restriction), NOT in this file. See SETUP.md.
+#   - publish_mode "editorial_workflow" means every change an editor makes
+#     is saved as a draft first (its own branch + a deploy preview you can
+#     click through and check before it goes live), not committed straight
+#     to the live site. Publishing is a separate, deliberate step. Every
+#     publish is also an ordinary git commit, so it can be reverted from
+#     Netlify's Deploys tab (one-click "restore this deploy") or from the
+#     GitHub repo's commit history at any time.
+
 backend:
   name: git-gateway
   branch: main
+  # squash_merges: true keeps the published history on `main` to one clean
+  # commit per published entry, which makes the "review or revert published
+  # changes" history easier for a non-technical editor to read.
+  squash_merges: true
 
-media_folder: "images"
-public_folder: "/images"
+publish_mode: editorial_workflow
+
+# All uploaded photos/logos land in assets/images (the same folder the live
+# site already serves from) and are referenced back with that public path.
+media_folder: "assets/images"
+public_folder: "/assets/images"
+
+# Defense-in-depth media constraints: cap upload size and keep this to
+# ordinary raster photos. (SVG uploads are deliberately discouraged — an SVG
+# can carry an embedded <script> that would run if someone opened the file
+# directly in a browser tab. Editors should only upload .jpg/.jpeg/.png/.webp
+# files; see SETUP.md.)
+media_library:
+  config:
+    max_file_size: 8000000 # 8 MB
 
 collections:
-  - name: "settings"
-    label: "Site Settings"
+  - name: "contact"
+    label: "Contact & Hours"
+    description: "Phone, address, social links, booking URL, and business hours shown across the site."
     files:
-
       - name: "contact"
         label: "Contact & Hours"
         file: "_data/contact.json"
         fields:
-          - { label: "Phone Number", name: "phone", widget: "string", hint: "e.g. (781) 555-1234" }
-          - { label: "Email", name: "email", widget: "string" }
-          - { label: "Address Line 1", name: "address1", widget: "string" }
-          - { label: "Address Line 2", name: "address2", widget: "string" }
-          - { label: "Google Maps URL", name: "maps_url", widget: "string" }
-          - { label: "Vagaro Booking URL", name: "vagaro_url", widget: "string" }
+          - { label: "Phone (display, e.g. (857) 264-0009)", name: "phone_display", widget: "string", pattern: ['^\(\d{3}\) \d{3}-\d{4}$', "Use the format (857) 264-0009"] }
+          - { label: "Phone (tel link, e.g. +18572640009)", name: "phone_tel", widget: "string", pattern: ['^\+1\d{10}$', "Use the format +18572640009 (no spaces or dashes)"] }
+          - { label: "Email", name: "email", widget: "string", pattern: ['^[^\s@]+@[^\s@]+\.[^\s@]+$', "Enter a valid email address"] }
+          - { label: "Address line 1", name: "address_line1", widget: "string" }
+          - { label: "Address line 2", name: "address_line2", widget: "string" }
+          - { label: "Google Maps URL", name: "maps_url", widget: "string", pattern: ['^https://', "Must start with https://"] }
+          - { label: "Vagaro booking URL", name: "vagaro_url", widget: "string", pattern: ['^https://', "Must start with https://"] }
+          - { label: "Facebook URL", name: "facebook_url", widget: "string", required: false, pattern: ['^https://', "Must start with https://"] }
+          - { label: "Instagram URL", name: "instagram_url", widget: "string", required: false, pattern: ['^https://', "Must start with https://"] }
           - label: "Hours"
             name: "hours"
             widget: "list"
+            allow_add: false
+            allow_delete: false
+            max: 7
+            min: 7
             fields:
               - { label: "Day", name: "day", widget: "string" }
-              - { label: "Hours", name: "time", widget: "string", hint: "e.g. 9am – 7pm or Closed" }
+              - { label: "Hours (e.g. 9am – 7pm, or Closed)", name: "time", widget: "string" }
 
-      - name: "services"
-        label: "Services & Pricing"
-        file: "_data/services.json"
-        fields:
-          - label: "Services"
-            name: "services"
-            widget: "list"
-            fields:
-              - { label: "Service Name", name: "name", widget: "string" }
-              - { label: "Description", name: "desc", widget: "text" }
-              - { label: "Starting Price", name: "price", widget: "string", hint: "e.g. $75" }
-              - { label: "Duration", name: "duration", widget: "string", hint: "e.g. 60–90 min" }
-
-      - name: "team"
-        label: "Team Members"
-        file: "_data/team.json"
-        fields:
-          - label: "Team Members"
-            name: "team"
-            widget: "list"
-            fields:
-              - { label: "Name", name: "name", widget: "string" }
-              - { label: "Role", name: "role", widget: "string" }
-              - { label: "Bio", name: "bio", widget: "text" }
-              - { label: "Initial (shown if no photo)", name: "initial", widget: "string" }
-              - { label: "Photo", name: "photo", widget: "image", required: false, hint: "Upload a photo of this team member" }
-
-      - name: "testimonials"
-        label: "Testimonials"
-        file: "_data/testimonials.json"
-        fields:
-          - label: "Testimonials"
-            name: "testimonials"
-            widget: "list"
-            fields:
-              - { label: "Quote", name: "text", widget: "text" }
-              - { label: "Author", name: "author", widget: "string", hint: "e.g. — A. Patel" }
-              - { label: "Source", name: "source", widget: "string", hint: "e.g. Google Review" }
-
+  - name: "about"
+    label: "About & Our Story"
+    description: "The About section text and the Our Story founder quote/photo."
+    files:
       - name: "about"
         label: "About & Our Story"
         file: "_data/about.json"
         fields:
-          - { label: "About Paragraph 1", name: "para1", widget: "text" }
-          - { label: "About Paragraph 2", name: "para2", widget: "text" }
-          - { label: "About Paragraph 3", name: "para3", widget: "text" }
-          - { label: "Founder Quote (Our Story page)", name: "founder_quote", widget: "text" }
-          - { label: "Founder Name & Title", name: "founder_name", widget: "string" }
-          - { label: "Founder Photo (Our Story page)", name: "founder_photo", widget: "image", required: false, hint: "Upload a photo of the founder" }
+          - { label: "About — paragraph 1", name: "para1", widget: "text" }
+          - { label: "About — paragraph 2", name: "para2", widget: "text" }
+          - { label: "About — paragraph 3", name: "para3", widget: "text" }
+          - { label: "Our Story — founder quote", name: "founder_quote", widget: "text" }
+          - { label: "Our Story — founder name & title", name: "founder_name", widget: "string" }
+          - { label: "Our Story — founder photo", name: "founder_photo", widget: "image", required: false }
 
+  - name: "services"
+    label: "Services & Products"
+    description: "The 9 service category tiles (title, photo, and the list of services shown when a visitor clicks in) plus the 4 retail brands shown under Products."
+    files:
+      - name: "services"
+        label: "Services & Products"
+        file: "_data/services.json"
+        fields:
+          - label: "Categories"
+            name: "categories"
+            widget: "list"
+            allow_add: false
+            allow_delete: false
+            summary: "{{title}}"
+            fields:
+              - { label: "Key (do not change)", name: "key", widget: "string", read_only: true }
+              - { label: "Title shown on the tile", name: "title", widget: "string" }
+              - { label: "Tile photo", name: "tile_image", widget: "image", required: false }
+              - { label: "Type (do not change)", name: "type", widget: "hidden" }
+              - label: "Services list (used for every category except Products)"
+                name: "items"
+                widget: "list"
+                required: false
+                field: { label: "Service", name: "item", widget: "string" }
+              - label: "Brands (Products category only)"
+                name: "brands"
+                widget: "list"
+                required: false
+                fields:
+                  - { label: "Logo", name: "logo", widget: "image" }
+                  - { label: "Logo alt text", name: "alt", widget: "string" }
+                  - { label: "Add light chip behind logo", name: "chip", widget: "boolean", default: false }
+                  - { label: "Category label", name: "category", widget: "string" }
+                  - { label: "Description", name: "desc", widget: "text" }
+                  - { label: "Learn More URL", name: "url", widget: "string", pattern: ['^https://', "Must start with https://"] }
+
+  - name: "team"
+    label: "Team"
+    description: "Team member cards (the Team section is currently hidden on the live site, but can be re-enabled later)."
+    files:
+      - name: "team"
+        label: "Team"
+        file: "_data/team.json"
+        fields:
+          - label: "Team members"
+            name: "team"
+            widget: "list"
+            summary: "{{name}}"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Role", name: "role", widget: "string" }
+              - { label: "Bio", name: "bio", widget: "text" }
+              - { label: "Initial shown if no photo", name: "initial", widget: "string", required: false }
+              - { label: "Photo", name: "photo", widget: "image", required: false }
+
+  - name: "testimonials"
+    label: "Testimonials"
+    description: "Client review cards shown in the Reviews section."
+    files:
+      - name: "testimonials"
+        label: "Testimonials"
+        file: "_data/testimonials.json"
+        fields:
+          - label: "Reviews"
+            name: "testimonials"
+            widget: "list"
+            summary: "{{author}}"
+            fields:
+              - { label: "Quote", name: "text", widget: "text" }
+              - { label: "Author (name only, no dash)", name: "author", widget: "string" }
+
+  - name: "gallery"
+    label: "Gallery"
+    description: "The 5 photos shown in the Gallery section."
+    files:
       - name: "gallery"
-        label: "Gallery Photos"
+        label: "Gallery"
         file: "_data/gallery.json"
         fields:
-          - label: "Gallery Items"
+          - label: "Photos"
             name: "items"
             widget: "list"
+            allow_add: false
+            allow_delete: false
+            max: 5
+            min: 5
+            summary: "{{label}}"
             fields:
-              - { label: "Label", name: "label", widget: "string", hint: "e.g. The Saiba Space, Facials, Hair" }
-              - { label: "Photo", name: "photo", widget: "image", required: false, hint: "Upload a gallery photo" }
+              - { label: "Label", name: "label", widget: "string" }
+              - { label: "Photo", name: "photo", widget: "image", required: false }

@@ -1,38 +1,20 @@
 {
-  "phone": "(123) 456-7890",
-  "email": "sahis@saibasalon.com",
-  "address1": "135 Massachusetts Ave",
-  "address2": "Lexington, MA 02420",
+  "phone_display": "(857) 264-0009",
+  "phone_tel": "+18572640009",
+  "email": "contact@saibasalon.com",
+  "address_line1": "135 Massachusetts Ave",
+  "address_line2": "Lexington, MA 02420",
   "maps_url": "https://maps.google.com/?q=135+Massachusetts+Ave,+Lexington,+MA+02420",
   "vagaro_url": "https://www.vagaro.com",
+  "facebook_url": "https://www.facebook.com/share/1F3pM3eAGK/?mibextid=wwXIfr",
+  "instagram_url": "https://www.instagram.com/saibasalon",
   "hours": [
-    {
-      "day": "Monday",
-      "time": "9am – 5pm"
-    },
-    {
-      "day": "Tuesday",
-      "time": "9am – 7pm"
-    },
-    {
-      "day": "Wednesday",
-      "time": "9am – 7pm"
-    },
-    {
-      "day": "Thursday",
-      "time": "9am – 8pm"
-    },
-    {
-      "day": "Friday",
-      "time": "9am – 8pm"
-    },
-    {
-      "day": "Saturday",
-      "time": "9am – 6pm"
-    },
-    {
-      "day": "Sunday",
-      "time": "Closed"
-    }
+    { "day": "Monday", "time": "10am – 7pm" },
+    { "day": "Tuesday", "time": "10am – 7pm" },
+    { "day": "Wednesday", "time": "10am – 7pm" },
+    { "day": "Thursday", "time": "10am – 7pm" },
+    { "day": "Friday", "time": "9am – 5pm" },
+    { "day": "Saturday", "time": "9am – 5pm" },
+    { "day": "Sunday", "time": "Closed" }
   ]
 }

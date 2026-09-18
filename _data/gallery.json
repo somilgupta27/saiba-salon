@@ -1,9 +1,9 @@
 {
   "items": [
-    { "label": "The Saiba Space", "photo": "" },
-    { "label": "Facials",         "photo": "" },
-    { "label": "Massage",         "photo": "" },
-    { "label": "Hair",            "photo": "" },
-    { "label": "Nails",           "photo": "" }
+    { "label": "The Saiba Space", "photo": "assets/images/gallery-1-the-saiba-space.jpg" },
+    { "label": "Facials", "photo": "assets/images/gallery-2-facials.jpg" },
+    { "label": "Massage", "photo": "assets/images/gallery-3-massage.jpg" },
+    { "label": "Hair", "photo": "assets/images/gallery-4-hair.jpg" },
+    { "label": "Nails", "photo": "assets/images/gallery-5-nails.jpg" }
   ]
 }

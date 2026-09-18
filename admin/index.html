@@ -3,10 +3,74 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
   <title>Saiba Salon — Content Manager</title>
+  <!--
+    AUTH: Netlify Identity Widget. This is what shows the sign-in screen and
+    checks the visitor's session on every page load. It is loaded from
+    Netlify's own CDN (not bundled into this repo), so it always matches
+    Netlify's current, patched Identity service.
+  -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <style>
+    /* Minimal styling so a signed-out or unauthorized visitor sees a clear
+       message instead of a blank page while Decap CMS's own script loads. */
+    body { font-family: -apple-system, sans-serif; background:#022111; color:#f6efe2; margin:0; }
+    #cms-gate { display:flex; align-items:center; justify-content:center; min-height:100vh; text-align:center; padding:2rem; }
+    #cms-gate h1 { font-size:1.4rem; margin-bottom:.5rem; }
+    #cms-gate button { margin-top:1rem; background:#ce9644; color:#022111; border:none; padding:.6rem 1.4rem; border-radius:4px; font-size:1rem; cursor:pointer; }
+  </style>
 </head>
 <body>
-  <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+  <div id="cms-gate">
+    <div>
+      <h1>Saiba Salon Content Manager</h1>
+      <p>Checking your sign-in status…</p>
+      <button id="cms-login-btn" style="display:none;">Log in</button>
+    </div>
+  </div>
+
+  <script>
+    // Gate: don't even hand control to the CMS UI until Netlify Identity
+    // confirms a logged-in user. This is a UX convenience, not the real
+    // security boundary — the real boundary is Git Gateway on Netlify's
+    // servers, which independently re-checks the session on every single
+    // read/write the CMS makes. Even if someone bypassed everything in this
+    // page (e.g. by disabling JavaScript checks), Git Gateway would still
+    // reject unauthenticated or unauthorized requests server-side.
+    window.netlifyIdentity = window.netlifyIdentity || null;
+
+    function showLoginPrompt() {
+      var gate = document.getElementById('cms-gate');
+      gate.querySelector('p').textContent = 'Please log in to manage Saiba Salon’s website content.';
+      var btn = document.getElementById('cms-login-btn');
+      btn.style.display = 'inline-block';
+      btn.onclick = function () { window.netlifyIdentity.open(); };
+    }
+
+    function bootCMS() {
+      document.getElementById('cms-gate').style.display = 'none';
+      var s = document.createElement('script');
+      s.src = 'https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js';
+      document.body.appendChild(s);
+    }
+
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on('init', function (user) {
+        if (user) {
+          bootCMS();
+        } else {
+          showLoginPrompt();
+        }
+      });
+      window.netlifyIdentity.on('login', function () {
+        window.location.reload();
+      });
+      window.netlifyIdentity.init();
+    } else {
+      document.getElementById('cms-gate').querySelector('p').textContent =
+        'Sign-in is unavailable right now (Netlify Identity did not load). Please check your connection and reload.';
+    }
+  </script>
 </body>
 </html>

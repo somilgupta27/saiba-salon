@@ -1,0 +1,44 @@
+# Saiba Hair Salon & Spa — Netlify configuration
+#
+# This is a plain static site: no build step, publish the repo root as-is.
+[build]
+  publish = "."
+
+# ── Security headers ──
+# Applied to every response. A static site has no server-side code to
+# exploit, so these headers are about limiting what a malicious or
+# compromised piece of content (a bad third-party script, a crafted upload)
+# could still do in a visitor's or editor's browser.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    # Scripts only from this site's own files plus Netlify Identity's widget
+    # (the only remote script the public pages load) — no 'unsafe-inline'
+    # needed here since index.html has no inline <script> blocks, only
+    # external <script src> files. 'unsafe-inline' on style-src covers the
+    # handful of inline style="" attributes already in index.html.
+    Content-Security-Policy = "default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' https://identity.netlify.com; connect-src 'self' https://*.netlify.com https://*.netlify.app; frame-ancestors 'none'; object-src 'none'; base-uri 'self'"
+
+# The admin CMS needs to additionally load the Decap CMS bundle from unpkg
+# and talk to Netlify's Identity/Git Gateway APIs — kept to this one path
+# only, so the public-facing pages stay on the tighter policy above.
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Content-Security-Policy = "default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; script-src 'self' 'unsafe-inline' https://identity.netlify.com https://unpkg.com; connect-src 'self' https://api.github.com https://*.netlify.com https://*.netlify.app https://unpkg.com; frame-ancestors 'none'; object-src 'none'; base-uri 'self'"
+
+# Uploaded photos/logos are only ever meant to be loaded as images (<img
+# src>). This header neutralizes the one realistic risk from a user-provided
+# file in this folder: someone directly opening an uploaded .svg in a new
+# browser tab and it containing an embedded <script>. With this header, any
+# script inside a file served from this path is refused execution.
+[[headers]]
+  for = "/assets/images/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Content-Security-Policy = "script-src 'none'; sandbox"
